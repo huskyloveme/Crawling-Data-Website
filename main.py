@@ -22,7 +22,7 @@ fields = [
 ]
 
 def write_1_record_to_file(data_row):
-    with open('data_scaping.csv', 'a', encoding='utf-8', newline='') as csvfile:
+    with open('data_craw.csv', 'a', encoding='utf-8', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(data_row)
 
@@ -35,7 +35,7 @@ def process_scaping_data(from_ , to_):
         soup = BeautifulSoup(reponse.text, features="html.parser")
         all_product_in_page = soup.find_all("div", class_="item-cell")
         if not all_product_in_page:
-            print("Are you human?")
+            print("Are you a human?")
         for index, value in enumerate(all_product_in_page):
             soup_ = BeautifulSoup(str(value), features="html.parser")
             anchor_tags = soup_.find_all("a", class_="item-img")
