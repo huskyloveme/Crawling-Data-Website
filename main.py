@@ -10,11 +10,11 @@ def write_data_to_file(data_row):
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(data_row)
 
-def write_log_fail_file(log_text):
+def write_log_fail_to_file(log_text):
     with open('log.txt', 'a', encoding='utf-8') as file_log:
         file_log.write(log_text + '\n')
 
-def process_scaping_data(from_ , to_):
+def process_scraping_data(from_ , to_):
     for i in range(from_, to_ + 1):
         URL_CRAW = "https://www.newegg.com/GPUs-Video-Graphics-Cards/SubCategory/ID-48/Page-" + str(i)
         reponse = res.get(URL_CRAW)
@@ -115,7 +115,7 @@ def process_scaping_data(from_ , to_):
                 anchor_tags = product_tags.find_all("a", class_="item-img")
                 url_fail = anchor_tags[0]["href"]
                 print("CAN NOT REQUEST TO URL PRODUCT: {}".format(url_fail))
-                write_log_fail_file("CAN NOT REQUEST TO URL PRODUCT: {}".format(url_fail))
+                write_log_fail_to_file("CAN NOT REQUEST TO URL PRODUCT: {}".format(url_fail))
         time.sleep(1)
 
 def create_thread(from_, to_):
