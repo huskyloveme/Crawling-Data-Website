@@ -29,3 +29,7 @@ Mô tả cụ thể:
     - Phân bố giá của các sản phẩm (Mức giá phổ biến là bao nhiêu)
     - Phân bố giá sản phẩm theo hãng
     - Biểu diễn mối liên hệ giữa giá sản phẩm và rating của người dùng
+
+
+# Run Project
+py main.py (terminal) on folder: /unigap_project2 
