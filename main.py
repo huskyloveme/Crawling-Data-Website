@@ -26,9 +26,6 @@ def process_scraping_data(from_ , to_):
             print("Are you a human?")
         for product_tags in all_product_in_page:
             DATA_RESULT = Expectation_Data.copy()
-            """
-            Option 1: Request each Page URL 
-            """
             try:
                 # ItemID and Product Information
                 item_ID_tag = product_tags.find("ul", class_="item-features")
