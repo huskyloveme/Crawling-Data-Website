@@ -33,3 +33,7 @@ Mô tả cụ thể:
 
 # Run Project
 py main.py (terminal) on folder: /unigap_project2 
+
+# File connect_db.py for write CSV to SQL on local (and make 2 columns: total price and detail product)
+
+# File final_data.csv is csv file exported from MySQL local
