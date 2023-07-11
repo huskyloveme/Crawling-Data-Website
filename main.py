@@ -5,16 +5,19 @@ import csv
 import threading
 import time
 
+
 def write_data_to_file(data_row):
     with open('data_craw_one_thread.csv', 'a', encoding='utf-8', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(data_row)
 
+
 def write_log_fail_to_file(log_text):
     with open('log.txt', 'a', encoding='utf-8') as file_log:
         file_log.write(log_text + '\n')
 
-def process_scraping_data(from_ , to_):
+
+def process_scraping_data(from_, to_):
     for i in range(from_, to_ + 1):
         URL_CRAW = "https://www.newegg.com/GPUs-Video-Graphics-Cards/SubCategory/ID-48/Page-" + str(i)
         reponse = res.get(URL_CRAW)
@@ -63,10 +66,10 @@ def process_scraping_data(from_ , to_):
                     DATA_RESULT['branding'] = branding_img['title']
 
                 # Rating and Count Rating
-                rating_i = product_tags.find("i", class_ = "rating")
+                rating_i = product_tags.find("i", class_="rating")
                 if rating_i:
                     DATA_RESULT['rating'] = rating_i["aria-label"]
-                count_rating_i = product_tags.find("span", class_ = "item-rating-num")
+                count_rating_i = product_tags.find("span", class_="item-rating-num")
                 if count_rating_i:
                     DATA_RESULT['count_rating'] = int(str(count_rating_i.text).strip("()"))
 
@@ -78,13 +81,13 @@ def process_scraping_data(from_ , to_):
                     decimal_price = current_price_li.find("sup").text
                     DATA_RESULT['current_price'] = str(integer_price) + str(decimal_price)
 
-                #Shipping
+                # Shipping
                 shipping_price_li = product_tags.find("li", class_="price-ship")
                 if shipping_price_li:
                     DATA_RESULT['shipping'] = shipping_price_li.text
 
                 # Image_URL
-                image_container_a = product_tags.find("a", class_ = "item-img")
+                image_container_a = product_tags.find("a", class_="item-img")
                 if image_container_a:
                     image_img = image_container_a.find("img")
                     DATA_RESULT['image_url'] = image_img['src']
@@ -115,12 +118,13 @@ def process_scraping_data(from_ , to_):
                 write_log_fail_to_file("CAN NOT REQUEST TO URL PRODUCT: {}".format(url_fail))
         time.sleep(1)
 
+
 def create_thread(from_, to_):
-    print("Processing Craw DATA from PAGE({}) -> PAGE({})".format(from_,to_))
-    process_scaping_data(from_, to_)
+    print("Processing Craw DATA from PAGE({}) -> PAGE({})".format(from_, to_))
+    process_scraping_data(from_, to_)
+
 
 if __name__ == "__main__":
-
     # # Create Multi thread
     # thread_1 = threading.Thread(target=create_thread, args=(1, 33))
     # thread_2 = threading.Thread(target=create_thread, args=(34, 66))
@@ -132,12 +136,5 @@ if __name__ == "__main__":
     # thread_2.start()
     # thread_3.start()
 
-    #One thread
-    process_scaping_data(1, 100)
-
-
-
-
-
-
-
+    # One thread
+    process_scraping_data(1, 100)
